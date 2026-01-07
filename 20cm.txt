@@ -1,0 +1,258 @@
+# 배치 명령 파일 예시
+# '#'로 시작하는 줄은 주석입니다
+
+#-------------------------------
+set h 20 s AL d 0 v 5 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-5cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-5cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-5cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-5cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-5cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 0 v 10 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-10cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-10cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-10cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-10cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-10cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 0 v 15 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-15cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-15cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-15cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-15cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-0deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 15 v 5 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-5cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-5cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-5cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-5cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-5cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 15 v 10 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-10cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-10cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-10cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-10cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-10cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 15 v 15 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-15cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-15cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-15cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-15cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-15deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 30 v 5 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-5cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-5cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-5cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-5cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-5cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 30 v 10 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-10cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-10cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-10cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-10cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-10cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 30 v 15 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-15cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-15cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-15cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-15cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-30deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 45 v 5 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-5cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-5cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-5cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-5cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-5cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 45 v 10 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-10cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-10cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-10cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-10cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-10cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s AL d 45 v 15 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-15cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-15cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-15cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-15cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-AL-45deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s WSP d 0 v 5 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-5cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-5cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-5cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-5cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-5cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s WSP d 0 v 10 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-10cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-10cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-10cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-10cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-10cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 20 s WSP d 0 v 15 n 1
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-15cp-001-SN106359
+makefolder
+set n 2
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-15cp-002-SN106359
+makefolder
+set n 3
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-15cp-003-SN106359
+makefolder
+set n 4
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-15cp-004-SN106359
+makefolder
+set n 5
+cd D:\test0106\raw Images\0718\20cm\0718-20cm-2000um-WSP-0deg-15cp-005-SN106359
+makefolder
+

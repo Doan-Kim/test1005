@@ -62,7 +62,7 @@ Command List: help
         self.workdir = ''
         
         # Auto-load config if exists
-        self._load_config_silent()
+        self.do_loadconfig("")
     
     # ==================== 설정 관련 명령 ====================
     
@@ -247,7 +247,11 @@ Command List: help
             if 'verbose' in config:
                 self.verbose = config['verbose']
                 loaded_count += 1
-            
+            if 'settings' in config:
+                for key in self.settings.keys():
+                    if key in config['settings']:
+                        self.settings[key] = config['settings'][key]
+                        loaded_count += 1
             print(f"✓ Config loaded from {filename}")
             print(f"  Loaded {loaded_count} settings")
             
@@ -483,13 +487,43 @@ Command List: help
             
             # Update current_data_folder
             self.current_data_folder = folder_path
+            scalenumber = os.getcwd().split('-SN')[1]
+            
+            # Analyze images in rawimage_path
+            rawimage_path = os.path.abspath(os.getcwd())
+            image_extensions = {'.jpg', '.jpeg', '.png', '.tiff', '.tif'}
+            image_files = []
+            image_types = set()
+            
+            try:
+                for file in os.listdir(rawimage_path):
+                    file_path = os.path.join(rawimage_path, file)
+                    if os.path.isfile(file_path):
+                        ext = os.path.splitext(file)[1].lower()
+                        if ext in image_extensions:
+                            image_files.append(file)
+                            # Normalize extension names
+                            if ext in ['.jpg', '.jpeg']:
+                                image_types.add('jpeg')
+                            elif ext == '.png':
+                                image_types.add('png')
+                            elif ext in ['.tiff', '.tif']:
+                                image_types.add('tiff')
+            except Exception as e:
+                print(f"  Warning: Could not analyze images: {e}")
+            
+            imagetype = ','.join(sorted(image_types)) if image_types else 'none'
+            imagenumber = len(image_files)
+            imagename = image_files[0] if image_files else ''
             
             # Save folder path to JSON file
             folder_info_path = os.path.join(folder_path, "folder_info.json")
             folder_info = {
-                "folder_name": folder_name,
-                "absolute_path": os.path.abspath(folder_path),
-                "created_date": str(pd.Timestamp.now()),
+                "rawimage_path": rawimage_path,
+                "scalenumber": scalenumber,
+                "imagetype": imagetype,
+                "imagenumber": imagenumber,
+                "imagename": imagename,
                 "settings": {
                     "height": self.settings['height'],
                     "surface": self.settings['surface'],
@@ -503,6 +537,8 @@ Command List: help
                 with open(folder_info_path, 'w', encoding='utf-8') as f:
                     json.dump(folder_info, f, indent=2, ensure_ascii=False)
                 print(f"  ✓ Folder info saved: folder_info.json")
+                if imagenumber > 0:
+                    print(f"  ✓ Found {imagenumber} image(s) - Type(s): {imagetype}")
             except Exception as e:
                 print(f"  Warning: Could not save folder info: {e}")
             
@@ -798,7 +834,6 @@ Command List: help
                 return f"{size:.1f} {unit}"
             size /= 1024.0
         return f"{size:.1f} TB"
-    
     # ==================== 내보내기 명령 ====================
     
     def do_export(self, arg):
@@ -834,14 +869,135 @@ Command List: help
             print(f"✗ Export failed: {e}")
     
     # ==================== 시각화 명령 ====================
-    
     def do_view(self, arg):
-        '''
-        do_view의 Docstring
+        args = arg.strip().split()
+        mode = None
+        for a in args:
+            if a in ['-i', '-image']:
+                mode = 'image'
+            elif a in ['-c', '-contour']:
+                mode = 'contour'
+            elif a in ['-b', '-binary']:
+                mode = 'binary'    
+        if mode == 'image':
+            self._view_image()
+    
+    def _view_image(self):
+        img_num = 0
+        def trackbar(x):
+            nonlocal img_num
+            img_num = cv2.getTrackbarPos("frame", "Image Viewer")
+        """View raw images based on loaded config"""
+        # Check if all required settings are set
+        missing_settings = []
+        for key in ['height', 'surface', 'degree', 'viscosity', 'number']:
+            if self.settings[key] is None:
+                missing_settings.append(key)
         
-        :param self: 설명
-        :param arg: 설명
-        '''
+        if missing_settings:
+            print("✗ Required settings missing:")
+            for key in missing_settings:
+                # Show alias hints for each missing setting
+                aliases = [k for k, v in self.setting_aliases.items() if v == key]
+                if aliases:
+                    alias_hint = f" (or: {', '.join(aliases)})"
+                else:
+                    alias_hint = ""
+                print(f"  ✗ {key:15s} - use: set {key} <value>{alias_hint}")
+            return
+        src = self.workdir + '/' + f"{self.settings['height']}CM_{self.settings['surface']}_{self.settings['degree']}_{self.settings['viscosity']}_{self.settings['number']}"
+        src = src + '/folder_info.json'
+
+        if not os.path.exists(src):
+            print(f"✗ Config file not found: {src}")
+            return
+        
+        try:
+            with open(src, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            if 'rawimage_path' in config:
+                self.rawimage_path = config['rawimage_path']
+            if 'scalenumber' in config:
+                self.scalenumber = config['scalenumber']
+            if 'imagetype' in config:
+                self.imagetype = config['imagetype']
+            if 'imagenumber' in config:
+                self.imagenumber = config['imagenumber']
+        except json.JSONDecodeError as e:
+            print(f"✗ Invalid JSON format: {e}")
+        except Exception as e:
+            print(f"✗ Failed to load config: {e}")
+    
+        # Get list of image files from rawimage_path
+        image_extensions = {'.jpg', '.jpeg', '.png', '.tiff', '.tif'}
+        image_files = []
+        
+        try:
+            for file in sorted(os.listdir(self.rawimage_path)):
+                file_path = os.path.join(self.rawimage_path, file)
+                if os.path.isfile(file_path):
+                    ext = os.path.splitext(file)[1].lower()
+                    if ext in image_extensions:
+                        image_files.append(file_path)
+        except Exception as e:
+            print(f"✗ Failed to read images from {self.rawimage_path}: {e}")
+            return
+        
+        if not image_files:
+            print(f"✗ No images found in {self.rawimage_path}")
+            return
+        
+        # Print current settings
+        print("\n" + "="*60)
+        print("Current Settings:")
+        print(f"  Height       : {self.settings['height']} CM")
+        print(f"  Surface      : {self.settings['surface']}")
+        print(f"  Degree       : {self.settings['degree']}")
+        print(f"  Viscosity    : {self.settings['viscosity']}")
+        print(f"  Number       : {self.settings['number']}")
+        print("="*60)
+        
+        esc_key = 'q'
+        print(f"\nPress '{esc_key}' to exit image viewer\n")
+        
+        cv2.destroyAllWindows()
+        window_width = 1200
+        window_height = 800
+        cv2.namedWindow("Image Viewer", cv2.WINDOW_NORMAL)
+        cv2.resizeWindow("Image Viewer", window_width, window_height)
+        cv2.createTrackbar("frame", "Image Viewer", 0, len(image_files) - 1, trackbar)
+        
+        while cv2.waitKey(1) != ord(esc_key):
+            imagesrc = image_files[img_num] if img_num < len(image_files) else image_files[0]
+            _img = cv2.imread(imagesrc)
+            if _img is not None:
+                # Get original image dimensions
+                h, w = _img.shape[:2]
+                
+                # Calculate scaling factor to fit window while maintaining aspect ratio
+                scale = min(window_width / w, window_height / h)
+                new_w = int(w * scale)
+                new_h = int(h * scale)
+                
+                # Resize image maintaining aspect ratio
+                resized_img = cv2.resize(_img, (new_w, new_h), interpolation=cv2.INTER_AREA)
+                
+                # Create canvas with window size and black background
+                canvas = np.zeros((window_height, window_width, 3), dtype=np.uint8)
+                
+                # Calculate position to center the image
+                x_offset = (window_width - new_w) // 2
+                y_offset = (window_height - new_h) // 2
+                
+                # Place resized image on canvas
+                canvas[y_offset:y_offset+new_h, x_offset:x_offset+new_w] = resized_img
+                
+                cv2.imshow("Image Viewer", canvas)
+            else:
+                print(f"✗ Failed to load image: {imagesrc}")
+                break
+        cv2.destroyAllWindows()
+
     # ==================== 배치 처리 명령 ====================
     
     def do_batch(self, arg):

@@ -1,5 +1,11 @@
 {
   "workdir": "D:/test0106/Data",
-  "verbose": false
-
+  "verbose": false,
+  "settings" : {
+            "height": 20,
+            "surface": "AL",
+            "degree": 0,
+            "viscosity": 5,
+            "number": 1
+        }
 }

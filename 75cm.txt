@@ -1,0 +1,170 @@
+#-------------------------------
+set h 75 s AL d 0 v 5 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-AL-0deg-5cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-AL-0deg-5cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-AL-0deg-5cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-AL-0deg-5cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-AL-0deg-5cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s AL d 0 v 10 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-AL-0deg-10cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-AL-0deg-10cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-AL-0deg-10cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-AL-0deg-10cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-AL-0deg-10cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s AL d 0 v 15 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-AL-0deg-15cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-AL-0deg-15cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-AL-0deg-15cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-AL-0deg-15cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-AL-0deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s WSP d 0 v 5 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-WSP-0deg-5cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-WSP-0deg-5cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-WSP-0deg-5cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-WSP-0deg-5cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-WSP-0deg-5cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s WSP d 0 v 10 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-WSP-0deg-10cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-WSP-0deg-10cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-WSP-0deg-10cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-WSP-0deg-10cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-WSP-0deg-10cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s WSP d 0 v 15 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-WSP-0deg-15cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-WSP-0deg-15cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-WSP-0deg-15cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-WSP-0deg-15cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-WSP-0deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s WSP d 15 v 15 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-WSP-15deg-15cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-WSP-15deg-15cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-WSP-15deg-15cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-WSP-15deg-15cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-WSP-15deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s WSP d 30 v 15 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-WSP-30deg-15cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-WSP-30deg-15cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-WSP-30deg-15cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-WSP-30deg-15cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-WSP-30deg-15cp-005-SN106359
+makefolder
+
+#-------------------------------
+set h 75 s WSP d 45 v 15 n 1
+cd D:\test0106\raw Images\0718\75cm
+
+cd 0718-75cm-2000um-WSP-45deg-15cp-001-SN106359
+makefolder
+set n 2
+cd ../0718-75cm-2000um-WSP-45deg-15cp-002-SN106359
+makefolder
+set n 3
+cd ../0718-75cm-2000um-WSP-45deg-15cp-003-SN106359
+makefolder
+set n 4
+cd ../0718-75cm-2000um-WSP-45deg-15cp-004-SN106359
+makefolder
+set n 5
+cd ../0718-75cm-2000um-WSP-45deg-15cp-005-SN106359
+makefolder
