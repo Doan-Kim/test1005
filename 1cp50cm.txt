@@ -1,0 +1,143 @@
+#-------------------------------
+set h 50 s AL d 0 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\AL-0deg
+cd 0705-50cm-2000um-AL-0deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0705-50cm-2000um-AL-0deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0705-50cm-2000um-AL-0deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0705-50cm-2000um-AL-0deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0705-50cm-2000um-AL-0deg-1cp-005-SN114068_C001H001S0001
+makefolder
+
+#-------------------------------
+set h 50 s AL d 15 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\AL-15deg
+cd 0705-50cm-2000um-AL-15deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0705-50cm-2000um-AL-15deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0705-50cm-2000um-AL-15deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0705-50cm-2000um-AL-15deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0705-50cm-2000um-AL-15deg-1cp-005-SN114068_C001H001S0001
+makefolder
+
+#-------------------------------
+set h 50 s AL d 30 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\AL-30deg
+cd 0708-50cm-2000um-AL-30deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0708-50cm-2000um-AL-30deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0708-50cm-2000um-AL-30deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0708-50cm-2000um-AL-30deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0708-50cm-2000um-AL-30deg-1cp-005-SN114068_C001H001S0001
+makefolder
+
+#-------------------------------
+set h 50 s AL d 45 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\AL-45deg
+cd 0708-50cm-2000um-AL-45deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0708-50cm-2000um-AL-45deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0708-50cm-2000um-AL-45deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0708-50cm-2000um-AL-45deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0708-50cm-2000um-AL-45deg-1cp-005-SN114068_C001H001S0001
+makefolder
+
+#-------------------------------
+set h 50 s WSP d 0 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\WSP-0deg
+cd 0705-50cm-2000um-WSP-0deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0705-50cm-2000um-WSP-0deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0705-50cm-2000um-WSP-0deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0705-50cm-2000um-WSP-0deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0705-50cm-2000um-WSP-0deg-1cp-005-SN114068_C001H001S0001
+makefolder
+
+#-------------------------------
+set h 50 s WSP d 15 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\WSP-15deg
+cd 0705-50cm-2000um-WSP-15deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0705-50cm-2000um-WSP-15deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0705-50cm-2000um-WSP-15deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0705-50cm-2000um-WSP-15deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0705-50cm-2000um-WSP-15deg-1cp-005-SN114068_C001H001S0001
+makefolder
+
+#-------------------------------
+set h 50 s WSP d 30 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\WSP-30deg
+cd 0708-50cm-2000um-WSP-30deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0708-50cm-2000um-WSP-30deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0708-50cm-2000um-WSP-30deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0708-50cm-2000um-WSP-30deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0708-50cm-2000um-WSP-30deg-1cp-005-SN114068_C001H001S0001
+makefolder
+
+#-------------------------------
+set h 50 s WSP d 45 v 1 n 1
+cd D:\test0106\raw Images\dynamic2\50cm\WSP-45deg
+cd 0708-50cm-2000um-WSP-45deg-1cp-001-SN114068_C001H001S0001
+makefolder
+set n 2
+cd ../0708-50cm-2000um-WSP-45deg-1cp-002-SN114068_C001H001S0001
+makefolder
+set n 3
+cd ../0708-50cm-2000um-WSP-45deg-1cp-003-SN114068_C001H001S0001
+makefolder
+set n 4
+cd ../0708-50cm-2000um-WSP-45deg-1cp-004-SN114068_C001H001S0001
+makefolder
+set n 5
+cd ../0708-50cm-2000um-WSP-45deg-1cp-005-SN114068_C001H001S0001
+makefolder

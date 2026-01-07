@@ -487,7 +487,11 @@ Command List: help
             
             # Update current_data_folder
             self.current_data_folder = folder_path
-            scalenumber = os.getcwd().split('-SN')[1]
+            scalenumber = 0
+            try:
+                scalenumber = os.getcwd().split('-SN')[1].split('_')[0]
+            except Exception as e:
+                scalenumber = 114155
             
             # Analyze images in rawimage_path
             rawimage_path = os.path.abspath(os.getcwd())
