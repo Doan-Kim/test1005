@@ -557,8 +557,143 @@ Command List: help
         except Exception as e:
             print(f"✗ Failed to create folder: {e}")
     
-    # ==================== 데이터 로드 명령 ====================
+    def do_readfolder(self, arg):
+        """
+        List direct subfolders in a given directory
+        Usage: readfolder <folder_path>
+        Example: readfolder D:/data
+                 readfolder .
+                 readfolder ./subfolder
+        """
+        args = arg.strip()
+        
+        if not args:
+            print("✗ Usage: readfolder <folder_path>")
+            print("Example: readfolder D:/data")
+            return
+        
+        folder_path = Path(args)
+        
+        # 경로가 존재하는지 확인
+        if not folder_path.exists():
+            print(f"✗ 폴더를 찾을 수 없습니다: {folder_path}")
+            return
+        
+        if not folder_path.is_dir():
+            print(f"✗ 폴더가 아닙니다: {folder_path}")
+            return
+        
+        # 직속 하위 폴더만 수집
+        subfolders = []
+        
+        try:
+            # 현재 폴더의 직속 항목만 확인
+            for item in folder_path.iterdir():
+                if item.is_dir():
+                    subfolders.append(str(item))
+            
+            # 결과 출력
+            if subfolders:
+                n = 0
+                for folder in subfolders:
+                    print(f"[{n}]: {folder}")
+                    n += 1
+                    self._readfolder_json(folder)                      
+                # 폴더 리스트를 배열로 저장
+                self.last_dirs = subfolders
+            else:
+                print(f"✓ '{folder_path}'에 하위 폴더가 없습니다.")
+                self.last_dirs = []
+            
+        except PermissionError as e:
+            print(f"✗ 접근 권한 오류: {e}")
+        except Exception as e:
+            print(f"✗ 오류 발생: {e}")
     
+    def _readfolder_json(self, folder):
+        """
+        Read _DATA.csv from a folder and update config.json with extracted values
+        
+        Args:
+            folder: Path to folder containing _DATA.csv
+        """
+        try:
+            # _DATA.csv 파일 경로
+            csv_path = os.path.join(folder, "_DATA.csv")
+            
+            # 파일이 존재하는지 확인
+            if not os.path.exists(csv_path):
+                if self.verbose:
+                    print(f"  ⚠ _DATA.csv not found in {folder}")
+                return
+            
+            # CSV 파일 읽기
+            data = pd.read_csv(csv_path)
+            
+            if len(data) == 0:
+                if self.verbose:
+                    print(f"  ⚠ _DATA.csv is empty in {folder}")
+                return
+            
+            # 폴더 이름에서 설정값 추출
+            # 예: "20CM_AL_0_5_1" -> height=20, surface=AL, degree=0, viscosity=5, number=1
+            folder_name = os.path.basename(folder)
+            parts = folder_name.split('_')
+            
+            if len(parts) >= 5:
+                try:
+                    # 폴더 이름 파싱
+                    height = parts[0].replace('CM', '')
+                    surface = parts[1]
+                    degree = parts[2]
+                    viscosity = parts[3]
+                    number = parts[4]
+                    
+                    # workdir의 config.json 경로
+                    if self.workdir:
+                        config_path = os.path.join(self.workdir, "config.json")
+                    else:
+                        config_path = self.config_file
+                    
+                    # 기존 config 읽기
+                    if os.path.exists(config_path):
+                        with open(config_path, 'r', encoding='utf-8') as f:
+                            config = json.load(f)
+                    else:
+                        config = {"workdir": self.workdir, "verbose": False, "settings": {}}
+                    
+                    # 설정값 업데이트
+                    config['settings'] = {
+                        'height': int(height) if height.isdigit() else height,
+                        'surface': surface,
+                        'degree': int(degree) if degree.isdigit() else degree,
+                        'viscosity': int(viscosity) if viscosity.isdigit() else viscosity,
+                        'number': int(number) if number.isdigit() else number
+                    }
+                    
+                    # CSV에서 특정 값 추출 (필요시 여기에 추가)
+                    # 예: 첫 번째 행의 특정 컬럼 값
+                    if 'value' in data.columns:
+                        config['data_value'] = data['value'].iloc[0]
+                    
+                    # config.json에 저장
+                    with open(config_path, 'w', encoding='utf-8') as f:
+                        json.dump(config, f, indent=2, ensure_ascii=False)
+                    
+                    if self.verbose:
+                        print(f"  ✓ Updated config: {folder_name}")
+                        
+                except (ValueError, IndexError) as e:
+                    if self.verbose:
+                        print(f"  ⚠ Failed to parse folder name: {folder_name}")
+            else:
+                if self.verbose:
+                    print(f"  ⚠ Invalid folder name format: {folder_name}")
+                    
+        except Exception as e:
+            if self.verbose:
+                print(f"  ✗ Error processing {folder}: {e}")
+
     def do_load(self, arg):
         """
         Load data file
