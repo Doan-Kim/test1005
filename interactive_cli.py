@@ -1,26 +1,156 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Interactive CLI - 대화형 명령줄 인터페이스
-한 번 실행 후 여러 명령을 계속 입력할 수 있는 대화형 셸
+"""경량화된 Interactive CLI
+
+이 모듈은 CLI의 상태와 공통 헬퍼만 유지합니다. 모든 명령은
+`cli/commands` 플러그인에서 제공되며, 엔트리포인트는 `cli/app.py`입니다.
 """
 
 import cmd
 import os
 import sys
 import json
-import pandas as pd
-import numpy as np
-import cv2
+
+
+class ContactAngleCLI(cmd.Cmd):
+    """Contact Angle CLI: 상태와 유틸리티만 보관."""
+
+    intro = """
+╔════════════════════════════════════════════════════════════╗
+║     Contact Angle Analysis - Interactive CLI               ║
+╚════════════════════════════════════════════════════════════╝
+
+Command Help: help or ?
+End program: exit or quit
+Command List: help
+
+    """
+
+    prompt = '(ContactAngle) > '
+
+    def __init__(self):
+        super().__init__()
+        # 상태
+        self.current_data = None
+        self.current_contours = []
+        self.current_src = None
+        self.current_data_folder = None
+
+        self.settings = {
+            'height': None,
+            'surface': None,
+            'degree': None,
+            'viscosity': None,
+            'number': None,
+        }
+
+        self.setting_aliases = {
+            'h': 'height', 's': 'surface', 'sur': 'surface',
+            'd': 'degree', 'deg': 'degree',
+            'v': 'viscosity', 'vis': 'viscosity',
+            'n': 'number', 'num': 'number',
+        }
+
+        self.verbose = False
+        self.last_dirs = []
+
+        # 기본 설정 파일 및 작업 디렉터리
+        self.config_file = os.path.join(os.getcwd(), 'config.json')
+        self.workdir = os.getcwd()
+
+        # 시작 시 존재하면 조용히 로드
+        self._load_config_silent()
+
+    # ---------- 설정 출력 및 헬퍼 ----------
+    def _show_settings(self):
+        """현재 설정을 보기 좋게 출력한다."""
+        for key, value in self.settings.items():
+            status = "✓" if value is not None else "✗"
+            print(f"  {status} {key:15s} = {value}")
+        print(f"  {'✓' if self.verbose else '✗'} verbose        = {self.verbose}")
+        if self.current_src:
+            print(f"  ✓ src           = {self.current_src}")
+        if self.workdir:
+            print(f"  ✓ workdir       = {self.workdir}")
+        if self.current_data_folder:
+            print(f"  ✓ data_folder   = {self.current_data_folder}")
+
+    def _load_config_silent(self):
+        """시작 시 설정 파일을 조용히 로드한다 (오류 무시)."""
+        try:
+            if not os.path.exists(self.config_file):
+                return
+            with open(self.config_file, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            for key in self.settings.keys():
+                if key in config:
+                    self.settings[key] = config[key]
+            if 'src' in config:
+                self.current_src = config['src']
+            if 'workdir' in config:
+                self.workdir = config['workdir']
+                if self.workdir and os.path.exists(self.workdir):
+                    try:
+                        os.chdir(self.workdir)
+                    except Exception:
+                        pass
+            if 'verbose' in config:
+                self.verbose = config['verbose']
+        except Exception:
+            pass
+
+    def _format_size(self, size):
+        """파일 크기를 사람이 읽기 쉬운 형식으로 변환한다."""
+        for unit in ['B', 'KB', 'MB', 'GB']:
+            if size < 1024.0:
+                return f"{size:.1f} {unit}"
+            size /= 1024.0
+        return f"{size:.1f} TB"
+
+    # 기본 동작
+    def emptyline(self):
+        pass
+
+    def default(self, line):
+        print(f"✗ Unknown command: {line}")
+        print("  Type 'help' or '?' to see available commands.")
+
+    def do_EOF(self, arg):
+        print()
+        return True
+
+
+def main():
+    try:
+        ContactAngleCLI().cmdloop()
+    except KeyboardInterrupt:
+        print("\n\nExiting.")
+        sys.exit(0)
+
+
+if __name__ == '__main__':
+    main()
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Interactive CLI - 경량화된 Contact Angle CLI 클래스
+
+이 파일은 CLI의 상태와 공통 헬퍼만 유지하며, 실제 명령 구현은
+`cli/commands` 플러그인으로 분리되어 있습니다.
+"""
+
+import cmd
+import os
+import sys
+import json
 from pathlib import Path
 
 
 class ContactAngleCLI(cmd.Cmd):
-    """Interactive Contact Angle Analysis CLI"""
-    
+    """Interactive Contact Angle Analysis CLI (state + helpers only)"""
+
     intro = """
 ╔════════════════════════════════════════════════════════════╗
-║     Contact Angle Analysis - Interactive CLI v1.0          ║
+║     Contact Angle Analysis - Interactive CLI               ║
 ╚════════════════════════════════════════════════════════════╝
 
 Command Help: help or ?
@@ -29,14 +159,14 @@ Command List: help
 
     """
     prompt = '(ContactAngle) > '
-    
+
     def __init__(self):
         super().__init__()
-        # Current working state
+        # State
         self.current_data = None
         self.current_contours = []
         self.current_src = None
-        self.current_data_folder = None  # Current data folder path based on settings
+        self.current_data_folder = None
         self.settings = {
             'height': None,
             'surface': None,
@@ -44,25 +174,20 @@ Command List: help
             'viscosity': None,
             'number': None,
         }
-        # Setting key aliases (shortcuts)
         self.setting_aliases = {
-            'h': 'height',
-            's': 'surface',
-            'sur': 'surface',
-            'd': 'degree',
-            'deg': 'degree',
-            'v': 'viscosity',
-            'vis': 'viscosity',
-            'n': 'number',
-            'num': 'number',
+            'h': 'height', 's': 'surface', 'sur': 'surface',
+            'd': 'degree', 'deg': 'degree',
+            'v': 'viscosity', 'vis': 'viscosity',
+            'n': 'number', 'num': 'number',
         }
         self.verbose = False
-        self.last_dirs = []  # Directory list from last ls command
-        self.config_file = 'D:/test1005/test1005/config.json'  # Default config file path
-        self.workdir = ''
-        
-        # Auto-load config if exists
-        self.do_loadconfig("")
+        self.last_dirs = []
+        # Keep a sane default config path (can be overridden by plugins)
+        self.config_file = os.path.join(os.getcwd(), 'config.json')
+        self.workdir = os.getcwd()
+
+        # Load config silently if present
+        self._load_config_silent()
     
     # ==================== 설정 관련 명령 ====================
     
